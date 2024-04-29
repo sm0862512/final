@@ -16,6 +16,7 @@
 		5FBE8CE92BD95119002FC514 /* FinalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE8CE82BD95119002FC514 /* FinalUITests.swift */; };
 		5FBE8CEB2BD95119002FC514 /* FinalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE8CEA2BD95119002FC514 /* FinalUITestsLaunchTests.swift */; };
 		BE7E0C722BDFDE6E00F9C594 /* nasaapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */; };
+		BE7E0C742BDFE0C600F9C594 /* nasaweather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		5FBE8CE82BD95119002FC514 /* FinalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalUITests.swift; sourceTree = "<group>"; };
 		5FBE8CEA2BD95119002FC514 /* FinalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasaapi.swift; sourceTree = "<group>"; };
+		BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasaweather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */,
+				BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */,
 				5FBE8CCC2BD95118002FC514 /* FinalApp.swift */,
 				5FBA24BC2BDFE0CE007E7DB4 /* PhotoView.swift */,
 				5FBE8CCE2BD95118002FC514 /* ContentView.swift */,
@@ -269,6 +272,7 @@
 				BE7E0C722BDFDE6E00F9C594 /* nasaapi.swift in Sources */,
 				5FBE8CCD2BD95118002FC514 /* FinalApp.swift in Sources */,
 				5FBA24BD2BDFE0CE007E7DB4 /* PhotoView.swift in Sources */,
+				BE7E0C742BDFE0C600F9C594 /* nasaweather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
