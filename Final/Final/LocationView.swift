@@ -12,8 +12,14 @@ struct LocationView: View {
         Color.black
             .edgesIgnoringSafeArea(.all)
             .overlay(
-                NavigationLink(destination: ContentView()) {
+                NavigationLink(destination: PhotoView()) {
                     ZStack {
+                        Text("A Month on Mars")
+                            .foregroundColor(.orange)
+                            .font(.custom("Avenir Next", size: 24))
+                            .fontWeight(.bold)
+                            .frame(width: 100, height: 100)
+                        
                         Image("mars-11012_1280")
                             .resizable()
                             .scaledToFit()

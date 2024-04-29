@@ -14,7 +14,7 @@ struct MainView: View {
                 .edgesIgnoringSafeArea(.all)
                 .overlay(
                     VStack {
-                        NavigationLink(destination: ContentView()) {
+                        NavigationLink(destination: LocationView()) {
                             ZStack {
                                 Image("TopImage")
                                     .resizable()
@@ -28,12 +28,12 @@ struct MainView: View {
                             .font(.custom("Avenir Next", size: 24))
                             .fontWeight(.bold)
                         
-                        NavigationLink(destination: ContentView()) {
+                        NavigationLink(destination: LocationView()) {
                             ZStack {
                                 Image("MarsHorizon")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 600, height: 300) 
+                                    .frame(width: 600, height: 300)
                             }
                         }
                     }
