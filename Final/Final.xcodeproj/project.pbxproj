@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15FB71072BDFD63400B1FC3A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB71062BDFD63400B1FC3A /* MainView.swift */; };
 		5FBE8CCD2BD95118002FC514 /* FinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE8CCC2BD95118002FC514 /* FinalApp.swift */; };
 		5FBE8CCF2BD95118002FC514 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE8CCE2BD95118002FC514 /* ContentView.swift */; };
 		5FBE8CD12BD95119002FC514 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FBE8CD02BD95119002FC514 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15FB71062BDFD63400B1FC3A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5FBE8CC92BD95118002FC514 /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FBE8CCC2BD95118002FC514 /* FinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalApp.swift; sourceTree = "<group>"; };
 		5FBE8CCE2BD95118002FC514 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				5FBE8CCB2BD95118002FC514 /* Final */,
-				5FBE8CDD2BD95119002FC514 /* FinalTests */,
 				5FBE8CE72BD95119002FC514 /* FinalUITests */,
 				5FBE8CCA2BD95118002FC514 /* Products */,
 			);
@@ -95,10 +96,12 @@
 		5FBE8CCB2BD95118002FC514 /* Final */ = {
 			isa = PBXGroup;
 			children = (
+				15FB71062BDFD63400B1FC3A /* MainView.swift */,
 				5FBE8CCC2BD95118002FC514 /* FinalApp.swift */,
 				5FBE8CCE2BD95118002FC514 /* ContentView.swift */,
 				5FBE8CD02BD95119002FC514 /* Assets.xcassets */,
 				5FBE8CD22BD95119002FC514 /* Final.entitlements */,
+				5FBE8CDD2BD95119002FC514 /* FinalTests */,
 				5FBE8CD32BD95119002FC514 /* Preview Content */,
 			);
 			path = Final;
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FBE8CCF2BD95118002FC514 /* ContentView.swift in Sources */,
+				15FB71072BDFD63400B1FC3A /* MainView.swift in Sources */,
 				5FBE8CCD2BD95118002FC514 /* FinalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
