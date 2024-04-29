@@ -10,6 +10,7 @@ import SwiftUI
 
 
 
+
 struct PhotoView: View {
     var body: some View {
         Color.black
@@ -18,6 +19,7 @@ struct PhotoView: View {
             .overlay{
                 
                 HStack(alignment: .center){
+                    
                     Text("All Photos")
                         .foregroundStyle(Color.white)
                         .font(.title)
@@ -27,7 +29,12 @@ struct PhotoView: View {
                     
                     
                     Button("View Timeplase") {
-                        //call timelapse view/function
+                        let viewController = ViewController()
+                        viewController.viewDidLoad()
+                        // Call a function
+                        print(viewController.imageData as Any) // Access a variable
+
+
                     }
                     .background(Color.white)
                     .foregroundColor(.black)

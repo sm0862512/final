@@ -9,7 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
-    
+    var imageData: Data? // Add this line
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +27,8 @@ class ViewController: UIViewController {
                        let imageData = try? Data(contentsOf: imgUrl) {
                         DispatchQueue.main.async {
                             self.imageView.image = UIImage(data: imageData)
+                            self.imageData = imageData // Add this line
+                            print(imageData)
                         }
                     }
                 }
