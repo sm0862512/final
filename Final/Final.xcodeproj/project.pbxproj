@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FBA24BD2BDFE0CE007E7DB4 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBA24BC2BDFE0CE007E7DB4 /* PhotoView.swift */; };
 		15FB71072BDFD63400B1FC3A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB71062BDFD63400B1FC3A /* MainView.swift */; };
 		5FBE8CCD2BD95118002FC514 /* FinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE8CCC2BD95118002FC514 /* FinalApp.swift */; };
 		5FBE8CCF2BD95118002FC514 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBE8CCE2BD95118002FC514 /* ContentView.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5FBA24BC2BDFE0CE007E7DB4 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = SOURCE_ROOT; };
 		15FB71062BDFD63400B1FC3A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5FBE8CC92BD95118002FC514 /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FBE8CCC2BD95118002FC514 /* FinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalApp.swift; sourceTree = "<group>"; };
@@ -100,10 +102,13 @@
 		5FBE8CCB2BD95118002FC514 /* Final */ = {
 			isa = PBXGroup;
 			children = (
+				BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */,
+				BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */,
 				15FB71062BDFD63400B1FC3A /* MainView.swift */,
 				BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */,
 				BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */,
 				5FBE8CCC2BD95118002FC514 /* FinalApp.swift */,
+				5FBA24BC2BDFE0CE007E7DB4 /* PhotoView.swift */,
 				5FBE8CCE2BD95118002FC514 /* ContentView.swift */,
 				5FBE8CD02BD95119002FC514 /* Assets.xcassets */,
 				5FBE8CD22BD95119002FC514 /* Final.entitlements */,
@@ -269,9 +274,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FBE8CCF2BD95118002FC514 /* ContentView.swift in Sources */,
+				BE7E0C722BDFDE6E00F9C594 /* nasaapi.swift in Sources */,
 				15FB71072BDFD63400B1FC3A /* MainView.swift in Sources */,
 				BE7E0C722BDFDE6E00F9C594 /* nasaapi.swift in Sources */,
 				5FBE8CCD2BD95118002FC514 /* FinalApp.swift in Sources */,
+				5FBA24BD2BDFE0CE007E7DB4 /* PhotoView.swift in Sources */,
 				BE7E0C742BDFE0C600F9C594 /* nasaweather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
