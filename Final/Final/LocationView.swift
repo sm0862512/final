@@ -12,8 +12,25 @@ struct LocationView: View {
         Color.black
             .edgesIgnoringSafeArea(.all)
             .overlay(
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.orange)
+                NavigationLink(destination: ContentView()) {
+                    ZStack {
+                        Image("mars-11012_1280")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 600, height: 300)
+                        
+                        Image("MarsRover2")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .onHover(perform: { hovering in
+                                   // Image("MarsRover2")
+                                    
+                                
+                            })
+                            
+                    }
+                }
             )
     }
 }
