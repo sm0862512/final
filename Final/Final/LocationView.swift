@@ -9,7 +9,12 @@ import SwiftUI
 
 struct LocationView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Color.black
+            .edgesIgnoringSafeArea(.all)
+            .overlay(
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(.orange)
+            )
     }
 }
 
