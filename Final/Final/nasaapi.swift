@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     var imageData: Data? // Add this line
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
