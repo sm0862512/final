@@ -23,7 +23,7 @@ struct MainView: View {
                             }
                         }
                         
-                        Text("A Month on Mars")
+                        Text("A Month with Curiosity")
                             .foregroundColor(.orange)
                             .font(.custom("Avenir Next", size: 24))
                             .fontWeight(.bold)
