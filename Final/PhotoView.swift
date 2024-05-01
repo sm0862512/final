@@ -17,6 +17,15 @@ struct PhotoView: View {
     var body: some View {
         ZStack {
             Color.black
+            NavigationLink(destination: TimelapsePhotoView()) {
+                                Text("Go to Timelapse View")
+                                    .padding()
+                                    .background(Color.orange)
+                                    .foregroundColor(Color.white)
+                                    .cornerRadius(1)
+                                    .position(x:179, y:690)
+                            }
+                            .padding()
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     ForEach(photos.indices, id: \.self) { index in
