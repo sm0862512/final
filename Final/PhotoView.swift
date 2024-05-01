@@ -15,47 +15,51 @@ struct PhotoView: View {
     @State private var currentPage: Int = 0 // Index of the currently displayed photo
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 0) {
-                ForEach(photos.indices, id: \.self) { index in
-                    AsyncImage(url: URL(string: photos[index])) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: UIScreen.main.bounds.width)
-                        case .failure:
-                            Text("Failed to load image")
-                                .foregroundColor(.blue)
-                        @unknown default:
-                            EmptyView()
+        ZStack {
+            Color.black
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 0) {
+                    ForEach(photos.indices, id: \.self) { index in
+                        AsyncImage(url: URL(string: photos[index])) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: UIScreen.main.bounds.width)
+                            case .failure:
+                                Text("Failed to load image")
+                                    .foregroundColor(.blue)
+                            @unknown default:
+                                EmptyView()
+                            }
                         }
+                        .frame(width: UIScreen.main.bounds.width)
                     }
-                    .frame(width: UIScreen.main.bounds.width)
                 }
-            }
-            .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
-            .gesture(
-                DragGesture()
-                    .onEnded { value in
-                        let horizontalSwipeMagnitude = value.translation.width
-                        if horizontalSwipeMagnitude < 0 {
-                            // Swiped to the left
-                            if currentPage < photos.count - 1 {
-                                currentPage += 1
-                            }
-                        } else if horizontalSwipeMagnitude > 0 {
-                            // Swiped to the right
-                            if currentPage > 0 {
-                                currentPage -= 1
+                .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
+                .gesture(
+                    DragGesture()
+                        .onEnded { value in
+                            let horizontalSwipeMagnitude = value.translation.width
+                            if horizontalSwipeMagnitude < 0 {
+                                // Swiped to the left
+                                if currentPage < photos.count - 1 {
+                                    currentPage += 1
+                                }
+                            } else if horizontalSwipeMagnitude > 0 {
+                                // Swiped to the right
+                                if currentPage > 0 {
+                                    currentPage -= 1
+                                }
                             }
                         }
-                    }
-            )
+                )
+            }
         }
+        .edgesIgnoringSafeArea(.all)
         .onAppear {
             fetchData() // Call the fetchData function when the view appears
         }
