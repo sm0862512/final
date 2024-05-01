@@ -9,47 +9,60 @@ struct Photo: Decodable {
     let img_src: String
 }
 
-
 struct PhotoView: View {
     
     @State private var photos: [String] = [] // Array to hold photo URLs
+    @State private var currentPage: Int = 0 // Index of the currently displayed photo
     
     var body: some View {
-        Color.black
-            .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                fetchData() // Call the fetchData function when the view appears
-            }
-            .overlay {
-                ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
-                        ForEach(photos, id: \.self) { photoURL in
-                            AsyncImage(url: URL(string: photoURL)) { phase in
-                                switch phase {
-                                case .empty:
-                                    ProgressView()
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                case .failure:
-                                    Text("Failed to load image")
-                                        .foregroundStyle(.blue)
-                                @unknown default:
-                                    EmptyView()
-                                }
-                            }
-                            .frame(width: 150, height: 150) // Adjust size as needed
-                            .padding()
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(spacing: 0) {
+                ForEach(photos.indices, id: \.self) { index in
+                    AsyncImage(url: URL(string: photos[index])) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: UIScreen.main.bounds.width)
+                        case .failure:
+                            Text("Failed to load image")
+                                .foregroundColor(.blue)
+                        @unknown default:
+                            EmptyView()
                         }
                     }
-                    .padding()
+                    .frame(width: UIScreen.main.bounds.width)
                 }
             }
+            .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
+            .gesture(
+                DragGesture()
+                    .onEnded { value in
+                        let horizontalSwipeMagnitude = value.translation.width
+                        if horizontalSwipeMagnitude < 0 {
+                            // Swiped to the left
+                            if currentPage < photos.count - 1 {
+                                currentPage += 1
+                            }
+                        } else if horizontalSwipeMagnitude > 0 {
+                            // Swiped to the right
+                            if currentPage > 0 {
+                                currentPage -= 1
+                            }
+                        }
+                    }
+            )
+        }
+        .onAppear {
+            fetchData() // Call the fetchData function when the view appears
+        }
     }
     
     func fetchData() {
-        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2024-1-1&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
+        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2023-1-19&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
