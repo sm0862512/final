@@ -9,6 +9,7 @@ struct Photo: Decodable {
     let img_src: String
 }
 
+
 struct PhotoView: View {
     
     @State private var photos: [String] = [] // Array to hold photo URLs

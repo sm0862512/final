@@ -9,13 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
+    var imageData: Data? // Add this line
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2024-1-1&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
         guard let url = URL(string: urlString) else { return }
-
+        
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
             do {
@@ -26,6 +27,8 @@ class ViewController: UIViewController {
                        let imageData = try? Data(contentsOf: imgUrl) {
                         DispatchQueue.main.async {
                             self.imageView.image = UIImage(data: imageData)
+                            self.imageData = imageData // Add this line
+                            print(imageData)
                         }
                     }
                 }
@@ -35,27 +38,3 @@ class ViewController: UIViewController {
         }.resume()
     }
 }
-
-    
-
-
-
-//private func getUsers() {
-//    guard let apiURL = URL(string: "https://api.weather.gov/alerts/active/count") else { return }
-//    let task = URLSession.shared.dataTask(with: apiURL) { data, response, error in
-//        if let error = error {
-//            print("Error: \(error.localizedDescription)")
-//        } else if let data = data {
-//            do {
-//                let decoder = JSONDecoder()
-//                let response = try decoder.decode(AlertResponse.self, from: data)
-//                DispatchQueue.main.async {
-//                    self.alertResponse = response
-//                }
-//            } catch {
-//                print("Error decoding JSON: \(error.localizedDescription)")
-//            }
-//        }
-//    }
-//    task.resume()
-//}
