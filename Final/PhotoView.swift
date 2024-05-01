@@ -18,12 +18,13 @@ struct PhotoView: View {
         ZStack {
             Color.black
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 0) {
+                HStack(spacing: 0) {
                     ForEach(photos.indices, id: \.self) { index in
                         AsyncImage(url: URL(string: photos[index])) { phase in
                             switch phase {
                             case .empty:
-                                ProgressView()
+                                ProgressView(value: 0.75)
+                                    .foregroundColor(.orange)
                             case .success(let image):
                                 image
                                     .resizable()
@@ -31,7 +32,7 @@ struct PhotoView: View {
                                     .frame(width: UIScreen.main.bounds.width)
                             case .failure:
                                 Text("Failed to load image")
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.orange)
                             @unknown default:
                                 EmptyView()
                             }
