@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+
 struct LocationView: View {
+    @State private var isPulsating = false
+    
     var body: some View {
         Color.black
             .edgesIgnoringSafeArea(.all)
@@ -27,19 +30,22 @@ struct LocationView: View {
                         
                         Image("MarsRover2")
                             .resizable()
+                            .position()
                             .scaledToFit()
                             .frame(width: 100, height: 100)
-                            .onHover(perform: { hovering in
-                                   // Image("MarsRover2")
-                                    
+                            .scaleEffect(isPulsating ? 0.9 : 1.0)
+                            .animation(Animation.easeInOut(duration: 10).repeatForever(autoreverses: true))  // Repeating animation
+                            .onAppear() {
+                                self.isPulsating.toggle() // Start pulsating animation when view appears
                                 
-                            })
-                            
+                            }
                     }
+                    
                 }
             )
     }
 }
+
 
 #Preview {
     LocationView()
