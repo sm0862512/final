@@ -14,84 +14,96 @@ struct PhotoView: View {
     @State private var photos: [String] = [] // Array to hold photo URLs
     @State private var currentPage: Int = 0 // Index of the currently displayed photo
     @State private var selectedDate = Date()
+    @State private var isShowingTimelapseView = false
     
     var body: some View {
         ZStack {
             Color.black
-            NavigationLink(destination: TimelapsePhotoView()) {
-                Text("Go to Timelapse View")
-                    .padding()
-                    .background(Color.orange)
-                    .foregroundColor(Color.white)
-                    .cornerRadius(1)
-                    .position(x:179, y:690)
-            }
-            .padding()
             
-            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
-                .datePickerStyle(.compact)
-                .padding()
-                .colorScheme(.dark)
-                .accentColor(.white)
-                .position(x: 190, y: 110)
-            
-            Button(action: {
-               fetchData()
-                print("Selected Date: \(selectedDate)")
-            }){
-                Text("Get Selected Date")
+            VStack {
+                DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+                    .datePickerStyle(.compact)
                     .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-            .padding()
-            .position(x: 190, y: 170)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 0) {
-                    ForEach(photos.indices, id: \.self) { index in
-                        AsyncImage(url: URL(string: photos[index])) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView(value: 0.75)
-                                    .foregroundColor(.orange)
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: UIScreen.main.bounds.width)
-                            case .failure:
-                                Text("Failed to load image")
-                                    .foregroundColor(.orange)
-                            @unknown default:
-                                EmptyView()
-                            }
-                        }
-                        .frame(width: UIScreen.main.bounds.width)
-                    }
+                    .colorScheme(.dark)
+                    .accentColor(.white)
+                
+                Button(action: {
+                    fetchData()
+                    print("Selected Date: \(selectedDate)")
+                }){
+                    Text("Get Selected Date")
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.orange)
+                        .fontWeight(.bold)
+                        .cornerRadius(3)
                 }
-                .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
-                .gesture(
-                    DragGesture()
-                        .onEnded { value in
-                            let horizontalSwipeMagnitude = value.translation.width
-                            if horizontalSwipeMagnitude < 0 {
-                                // Swiped to the left
-                                if currentPage < photos.count - 1 {
-                                    currentPage += 1
-                                }
-                            } else if horizontalSwipeMagnitude > 0 {
-                                // Swiped to the right
-                                if currentPage > 0 {
-                                    currentPage -= 1
+                .padding()
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 0) {
+                        ForEach(photos.indices, id: \.self) { index in
+                            AsyncImage(url: URL(string: photos[index])) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView(value: 0.75)
+                                        .foregroundColor(.orange)
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: UIScreen.main.bounds.width)
+                                case .failure:
+                                    Text("Failed to load image")
+                                        .foregroundColor(.orange)
+                                @unknown default:
+                                    EmptyView()
                                 }
                             }
+                            .frame(width: UIScreen.main.bounds.width)
                         }
-                )
+                    }
+                    .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
+                    .gesture(
+                        DragGesture()
+                            .onEnded { value in
+                                let horizontalSwipeMagnitude = value.translation.width
+                                if horizontalSwipeMagnitude < 0 {
+                                    // Swiped to the left
+                                    if currentPage < photos.count - 1 {
+                                        currentPage += 1
+                                    }
+                                } else if horizontalSwipeMagnitude > 0 {
+                                    // Swiped to the right
+                                    if currentPage > 0 {
+                                        currentPage -= 1
+                                    }
+                                }
+                            }
+                    )
+                }
+                Text("Swipe Left")
+                    .foregroundColor(.orange)
+                    .fontWeight(.bold)
+                    .padding(.bottom)
+                
+                // Navigation to TimelapsePhotoView only when button is tapped
+                NavigationLink(destination: TimelapsePhotoView(), isActive: $isShowingTimelapseView) {
+                    EmptyView()
+                }
+                
+                Button(action: {
+                    isShowingTimelapseView = true // Set to true to trigger navigation
+                }) {
+                    Text("Go to Timelapse View")
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(3)
+                        .fontWeight(.bold)
+                }
+                .padding()
             }
-            Text("Swipe Left")
-                .foregroundColor(.orange)
-                .position(x:190, y:210)
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {
