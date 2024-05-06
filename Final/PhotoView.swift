@@ -68,6 +68,9 @@ struct PhotoView: View {
                         }
                 )
             }
+            Text("Swipe Left")
+                .foregroundColor(.orange)
+                .position(x:190, y:210)
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {

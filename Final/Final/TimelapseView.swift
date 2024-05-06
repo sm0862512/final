@@ -1,4 +1,3 @@
-
 //
 //  TimelapseView.swift
 //  Final
