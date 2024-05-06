@@ -20,6 +20,7 @@
 		5FC9799E2BE284750098E7E4 /* TimelapseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC9799D2BE284750098E7E4 /* TimelapseView.swift */; };
 		BE7E0C722BDFDE6E00F9C594 /* nasaapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */; };
 		BE7E0C742BDFE0C600F9C594 /* nasaweather.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */; };
+		BEFBB02B2BE91A3400C6F5BD /* nasaapi2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFBB02A2BE91A3400C6F5BD /* nasaapi2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		5FC9799D2BE284750098E7E4 /* TimelapseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelapseView.swift; sourceTree = "<group>"; };
 		BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasaapi.swift; sourceTree = "<group>"; };
 		BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasaweather.swift; sourceTree = "<group>"; };
+		BEFBB02A2BE91A3400C6F5BD /* nasaapi2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasaapi2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				15FB71062BDFD63400B1FC3A /* MainView.swift */,
 				BE7E0C712BDFDE6E00F9C594 /* nasaapi.swift */,
+				BEFBB02A2BE91A3400C6F5BD /* nasaapi2.swift */,
 				15FB71102BDFE7E100B1FC3A /* LocationView.swift */,
 				BE7E0C732BDFE0C600F9C594 /* nasaweather.swift */,
 				5FBE8CCC2BD95118002FC514 /* FinalApp.swift */,
@@ -283,6 +286,7 @@
 				BE7E0C722BDFDE6E00F9C594 /* nasaapi.swift in Sources */,
 				15FB71072BDFD63400B1FC3A /* MainView.swift in Sources */,
 				BE7E0C722BDFDE6E00F9C594 /* nasaapi.swift in Sources */,
+				BEFBB02B2BE91A3400C6F5BD /* nasaapi2.swift in Sources */,
 				5FBE8CCD2BD95118002FC514 /* FinalApp.swift in Sources */,
 				5FBA24BD2BDFE0CE007E7DB4 /* PhotoView.swift in Sources */,
 				BE7E0C742BDFE0C600F9C594 /* nasaweather.swift in Sources */,
