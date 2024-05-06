@@ -13,19 +13,40 @@ struct PhotoView: View {
     
     @State private var photos: [String] = [] // Array to hold photo URLs
     @State private var currentPage: Int = 0 // Index of the currently displayed photo
+    @State private var selectedDate = Date()
     
     var body: some View {
         ZStack {
             Color.black
             NavigationLink(destination: TimelapsePhotoView()) {
-                                Text("Go to Timelapse View")
-                                    .padding()
-                                    .background(Color.orange)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(1)
-                                    .position(x:179, y:690)
-                            }
-                            .padding()
+                Text("Go to Timelapse View")
+                    .padding()
+                    .background(Color.orange)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(1)
+                    .position(x:179, y:690)
+            }
+            .padding()
+            
+            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+                .datePickerStyle(.compact)
+                .padding()
+                .colorScheme(.dark)
+                .accentColor(.white)
+                .position(x: 190, y: 110)
+            
+            Button(action: {
+               fetchData()
+                print("Selected Date: \(selectedDate)")
+            }){
+                Text("Get Selected Date")
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            }
+            .padding()
+            .position(x: 190, y: 170)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     ForEach(photos.indices, id: \.self) { index in
@@ -79,7 +100,7 @@ struct PhotoView: View {
     }
     
     func fetchData() {
-        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2023-1-19&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
+        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=\(selectedDate)&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
