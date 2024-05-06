@@ -29,10 +29,9 @@ struct TimelapsePhotoView: View {
     var body: some View {
         ZStack {
             Color.black // Background color
-            
             // ScrollView to display photos horizontally
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 0) {
+                HStack(spacing: 0) {
                     ForEach(photos.indices, id: \.self) { index in
                         // Asynchronously load images from URLs
                         AsyncImage(url: URL(string: photos[index])) { phase in
@@ -56,6 +55,11 @@ struct TimelapsePhotoView: View {
                 }
                 .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
             }
+            Text(selectedDate, style: .date)
+                .foregroundColor(.orange)
+                .fontWeight(.bold)
+                .position(x:190 ,y:160)
+
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {
@@ -98,6 +102,8 @@ struct TimelapsePhotoView: View {
 
 //struct TimelapsePhotoView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        TimelapsePhotoView(selectedDate: )
+//        TimelapsePhotoView(selectedDate: .constant(Date()))
 //    }
 //}
+
+
