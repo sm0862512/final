@@ -88,9 +88,10 @@ struct PhotoView: View {
                     .padding(.bottom)
                 
                 // Navigation to TimelapsePhotoView only when button is tapped
-                NavigationLink(destination: TimelapsePhotoView(), isActive: $isShowingTimelapseView) {
+                NavigationLink(destination: TimelapsePhotoView(selectedDate: $selectedDate), isActive: $isShowingTimelapseView) {
                     EmptyView()
                 }
+
                 
                 Button(action: {
                     isShowingTimelapseView = true // Set to true to trigger navigation

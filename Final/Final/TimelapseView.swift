@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimelapseResponse: Decodable {
     let photos: [TimelapsePhoto]
+    
 }
 
 struct TimelapsePhoto: Decodable {
@@ -20,6 +21,7 @@ struct TimelapsePhotoView: View {
     
     @State private var photos: [String] = [] // Array to hold photo URLs
     @State private var currentPage: Int = 0 // Index of the currently displayed photo
+    @Binding public var selectedDate: Date
     
     var body: some View {
         ZStack {
@@ -58,7 +60,7 @@ struct TimelapsePhotoView: View {
     }
     
     func fetchData() {
-        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2023-1-19&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
+        let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=\(selectedDate)&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -90,9 +92,9 @@ struct TimelapsePhotoView: View {
 }
 
 
-struct TimelapsePhotoView_Previews: PreviewProvider {
-    static var previews: some View {
-        TimelapsePhotoView()
-    }
-
-}
+//struct TimelapsePhotoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TimelapsePhotoView(selectedDate: )
+//    }
+//
+//}
