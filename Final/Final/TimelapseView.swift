@@ -1,15 +1,22 @@
+//
+//  TimelapseView.swift
+//  Final
+//
+//  Created by BALLARD, MATTHEW J. on 5/1/24.
+//
+
 import SwiftUI
 
-struct Response: Decodable {
-    let photos: [Photo]
+struct TimelapseResponse: Decodable {
+    let photos: [TimelapsePhoto]
 }
 
-struct Photo: Decodable {
+struct TimelapsePhoto: Decodable {
     let id: Int
     let img_src: String
 }
 
-struct PhotoView: View {
+struct TimelapsePhotoView: View {
     
     @State private var photos: [String] = [] // Array to hold photo URLs
     @State private var currentPage: Int = 0 // Index of the currently displayed photo
@@ -17,23 +24,13 @@ struct PhotoView: View {
     var body: some View {
         ZStack {
             Color.black
-            NavigationLink(destination: TimelapsePhotoView()) {
-                                Text("Go to Timelapse View")
-                                    .padding()
-                                    .background(Color.orange)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(1)
-                                    .position(x:179, y:690)
-                            }
-                            .padding()
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 0) {
+                LazyHStack(spacing: 0) {
                     ForEach(photos.indices, id: \.self) { index in
                         AsyncImage(url: URL(string: photos[index])) { phase in
                             switch phase {
                             case .empty:
-                                ProgressView(value: 0.75)
-                                    .foregroundColor(.orange)
+                                ProgressView()
                             case .success(let image):
                                 image
                                     .resizable()
@@ -41,7 +38,7 @@ struct PhotoView: View {
                                     .frame(width: UIScreen.main.bounds.width)
                             case .failure:
                                 Text("Failed to load image")
-                                    .foregroundColor(.orange)
+                                    .foregroundColor(.blue)
                             @unknown default:
                                 EmptyView()
                             }
@@ -50,31 +47,13 @@ struct PhotoView: View {
                     }
                 }
                 .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
-                .gesture(
-                    DragGesture()
-                        .onEnded { value in
-                            let horizontalSwipeMagnitude = value.translation.width
-                            if horizontalSwipeMagnitude < 0 {
-                                // Swiped to the left
-                                if currentPage < photos.count - 1 {
-                                    currentPage += 1
-                                }
-                            } else if horizontalSwipeMagnitude > 0 {
-                                // Swiped to the right
-                                if currentPage > 0 {
-                                    currentPage -= 1
-                                }
-                            }
-                        }
-                )
+                
             }
-            Text("Swipe Left")
-                .foregroundColor(.orange)
-                .position(x:190, y:210)
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {
             fetchData() // Call the fetchData function when the view appears
+            startTimer() // Start the timer when the view appears
         }
     }
     
@@ -99,10 +78,21 @@ struct PhotoView: View {
             }
         }.resume()
     }
+    
+    func startTimer() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+            
+                // Increment currentPage index, and reset if it exceeds array bounds
+                currentPage = (currentPage + 1) % photos.count
+            
+        }
+    }
 }
 
-struct PhotoView_Previews: PreviewProvider {
+
+struct TimelapsePhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoView()
+        TimelapsePhotoView()
     }
+
 }
