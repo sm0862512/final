@@ -1,34 +1,40 @@
 import SwiftUI
 
+// Struct to represent the response from the API
 struct Response: Decodable {
     let photos: [Photo]
 }
 
+// Struct to represent individual photos
 struct Photo: Decodable {
     let id: Int
     let img_src: String
 }
 
+// SwiftUI view to display photos
 struct PhotoView: View {
     
+    // State variables to manage UI state
     @State private var photos: [String] = [] // Array to hold photo URLs
     @State private var currentPage: Int = 0 // Index of the currently displayed photo
-    @State private var selectedDate = Date()
-    @State private var isShowingTimelapseView = false
+    @State private var selectedDate = Date() // Hold selected Date for photo API
+    @State private var isShowingTimelapseView = false // Toggle timelapse view
     
     var body: some View {
         ZStack {
-            Color.black
+            Color.black // Background color
             
             VStack {
+                // Date picker to select the date
                 DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
                     .datePickerStyle(.compact)
                     .padding()
                     .colorScheme(.dark)
                     .accentColor(.white)
                 
+                // Button to fetch photos for the selected date
                 Button(action: {
-                    fetchData()
+                    fetchData() // Call function to fetch data
                     print("Selected Date: \(selectedDate)")
                 }){
                     Text("Get Selected Date")
@@ -40,9 +46,11 @@ struct PhotoView: View {
                 }
                 .padding()
                 
+                // Scroll view to display photos horizontally
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
                         ForEach(photos.indices, id: \.self) { index in
+                            // Asynchronously load images from URLs
                             AsyncImage(url: URL(string: photos[index])) { phase in
                                 switch phase {
                                 case .empty:
@@ -65,6 +73,7 @@ struct PhotoView: View {
                     }
                     .offset(x: -CGFloat(currentPage) * UIScreen.main.bounds.width)
                     .gesture(
+                        // Gesture to detect horizontal swipes
                         DragGesture()
                             .onEnded { value in
                                 let horizontalSwipeMagnitude = value.translation.width
@@ -87,7 +96,7 @@ struct PhotoView: View {
                     .fontWeight(.bold)
                     .padding(.bottom)
                 
-                // Navigation to TimelapsePhotoView only when button is tapped
+                // Button to navigate to TimelapsePhotoView
                 NavigationLink(destination: TimelapsePhotoView(selectedDate: $selectedDate), isActive: $isShowingTimelapseView) {
                     EmptyView()
                 }
@@ -108,10 +117,11 @@ struct PhotoView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {
-            fetchData() // Call the fetchData function when the view appears
+            fetchData() // Fetch data when the view appears
         }
     }
     
+    // Function to fetch photos from the API based on selected date
     func fetchData() {
         let urlString = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=\(selectedDate)&camera=FHAZ&api_key=rEZh4vntktjhQhknCHNJO6nIbzUWm5Qlc5rojMzF"
         guard let url = URL(string: urlString) else { return }
@@ -135,6 +145,7 @@ struct PhotoView: View {
     }
 }
 
+// Preview provider for SwiftUI previews
 struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
         PhotoView()
