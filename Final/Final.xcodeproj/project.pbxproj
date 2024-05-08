@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1591E8422BEBC536004A118B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		15FB71062BDFD63400B1FC3A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		15FB71102BDFE7E100B1FC3A /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		5FBA24BC2BDFE0CE007E7DB4 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = SOURCE_ROOT; };
@@ -118,6 +119,7 @@
 				5FBE8CD22BD95119002FC514 /* Final.entitlements */,
 				5FBE8CDD2BD95119002FC514 /* FinalTests */,
 				5FBE8CD32BD95119002FC514 /* Preview Content */,
+				1591E8422BEBC536004A118B /* README.md */,
 			);
 			path = Final;
 			sourceTree = "<group>";

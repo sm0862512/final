@@ -95,6 +95,7 @@ struct PhotoView: View {
                     .foregroundColor(.orange)
                     .fontWeight(.bold)
                     .padding(.bottom)
+                    .opacity(!photos.isEmpty ? 1.0 : 0.0)
                 
                 // Button to navigate to TimelapsePhotoView
                 NavigationLink(destination: TimelapsePhotoView(selectedDate: $selectedDate), isActive: $isShowingTimelapseView) {
@@ -114,9 +115,6 @@ struct PhotoView: View {
                 }
                 .padding()
                 .disabled(photos.isEmpty)
-                if(photos.isEmpty) {
-                    
-                }
             }
         }
         .edgesIgnoringSafeArea(.all)
