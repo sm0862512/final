@@ -116,6 +116,8 @@ struct PhotoView: View {
                 .padding()
                 .disabled(photos.isEmpty)
             }
+            .foregroundColor(.white)
+            .fontWeight(.bold)
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {
