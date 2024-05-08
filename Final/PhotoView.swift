@@ -107,12 +107,16 @@ struct PhotoView: View {
                 }) {
                     Text("Go to Timelapse View")
                         .padding()
-                        .background(Color.orange)
-                        .foregroundColor(Color.white)
+                        .background(photos.isEmpty ? Color.gray : Color.orange)
+                        .foregroundColor(photos.isEmpty ? Color.white.opacity(0.5) : Color.white)
                         .cornerRadius(3)
                         .fontWeight(.bold)
                 }
                 .padding()
+                .disabled(photos.isEmpty)
+                if(photos.isEmpty) {
+                    
+                }
             }
         }
         .edgesIgnoringSafeArea(.all)
