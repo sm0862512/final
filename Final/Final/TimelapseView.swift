@@ -59,12 +59,17 @@ struct TimelapsePhotoView: View {
                 .foregroundColor(.orange)
                 .fontWeight(.bold)
                 .position(x:190 ,y:160)
-
+            
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {
             fetchData() // Fetch data when the view appears
-            startTimer() // Start the timer when the view appears
+            if (photos.count != 0){
+                startTimer() // Start the timer when the view appears
+                
+            } else {
+                
+            }
         }
     }
     
@@ -99,7 +104,6 @@ struct TimelapsePhotoView: View {
         }
     }
 }
-
 //struct TimelapsePhotoView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        TimelapsePhotoView(selectedDate: .constant(Date()))
